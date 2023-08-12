@@ -2,6 +2,7 @@ from django.shortcuts import render,redirect,HttpResponse
 from home.models import lis,contact_details,sign
 from django.contrib import messages
 from django.contrib.auth import authenticate,login
+from django.contrib.auth.models import User
 from datetime import datetime
 
 
@@ -18,7 +19,12 @@ def sign_up(request):
         if opass == cpass:
             si=sign(name=name,password=opass,email=email)
             si.save()
-            messages.success(request,"You Successfully signed in !!")
+
+            #create user
+            new_user=User.objects.create_user(name,email=email,password=opass)
+            new_user.save()
+
+            messages.success(request,"You Successfully signed Up !!")
             return redirect('/')
         else:
             messages.error(request,'Password Not matching')
