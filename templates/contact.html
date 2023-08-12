@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+
+<form method="post" style="background-color:#b2beb5;margin-top: 10%;">
+{% csrf_token %}
+<div style="background-image: url('https://source.unsplash.com/random/1920x1080/?wallpaper,dark');background-repeat: no-repeat;">
+<div class="row "> 
+    <div class="col py-2"> 
+            <input type="text" class="form-control" placeholder="Name" name="name">
+    </div>
+    <div class="col py-2"> 
+            <input type="number" class="form-control" placeholder="Phone no." name="phone">
+    </div>
+</div>
+<div class="row" > 
+    <div class="col py-2"> 
+            <input type="email" class="form-control" placeholder="Email" name="email" style="width: 49%;">
+    </div>
+</div>
+<div class="row">
+        <div class="col py-2"> 
+                <input type="text" class="form-control" placeholder="What do you want to discuss ?" name="desc">
+        </div>
+</div>
+<br>
+<div align="center">
+<button type="Submit" class="btn btn-primary">Submit</button>
+</div>
+<p style=" color: aliceblue;padding:0px; margin: 0%;">{% lorem 5%}</p>
+</div>
+</form>
+{% endblock body %}
+
+

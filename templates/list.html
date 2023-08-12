@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div style="display: flex; background-image: url('https://source.unsplash.com/random/1920x1080/?wallpaper,landscape');background-repeat: no-repeat;">
+
+  <div>
+    <div class="d-flex flex-column align-items-stretch flex-shrink-0 bg-body-tertiary" style="height: 733px; width: 380px; overflow-y: scroll; opacity: 0.9;background-color: white;">
+        <a  class="d-flex align-items-center flex-shrink-0 p-3 link-body-emphasis text-decoration-none border-bottom">
+          
+          <svg class="bi pe-none me-2" width="30" height="24"><use xlink:href="#bootstrap"></use></svg>
+          <span class="fs-5 fw-semibold">List group </span>
+        </a>
+          
+              {% for name in names %}
+              {% if name.uname == user %}              
+                <div class="list-group list-group-flush border-bottom scrollarea" style="opacity: 0.9;">
+                  <!-- <a href="#" class=" list-group-item-action   lh-sm" aria-current="true"> -->
+                    <div class="d-flex px-3 py-3  " style="background-color: #0D6EFD ;">
+                      
+                  <div >
+                  <ol>
+                  <a class="btn btn-success" href="/delete/{{ name.id }}">✅</a>
+                  <a class="btn btn-danger" href="/delete/{{ name.id }}">🗑</a>
+                  <strong>
+                  {{ name }}
+                  {{ name.uname }}
+                </strong>
+                </ol>
+              </div>
+              </div>
+            </a>      
+  
+          </div>
+          {% endif %}
+          {% endfor %}
+      </div>
+  </div>
+
+    <form method="post" name="form" id="post-form"> 
+      {% csrf_token %}
+      <div style="background-color: white;opacity: 0.8;">
+      <input type="text" name="title" placeholder="Enter Work" style="opacity: 0.5;">
+      <button type="submit" style="border-radius: 40%;">✨</button></div>
+  </form>
+</div>
+{% endblock body %}
+
