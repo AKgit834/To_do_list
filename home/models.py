@@ -20,8 +20,9 @@ class contact_details(models.Model):
         return self.name
     
 class sign(models.Model):
-    uname=models.CharField(max_length=12)
+    name=models.CharField(max_length=12)
     password=models.CharField(max_length=12)
+    email=models.CharField(max_length=122,default='')
 
     def __str__(self):
-        return self.uname
+        return self.name

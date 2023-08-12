@@ -10,12 +10,19 @@ def index(request):
 
 def sign_up(request):
     if request.method == "POST":
-        uname=request.POST.get('uname')
-        password=request.POST.get('password')
-        si=sign(uname=uname,password=password)
-        si.save()   
-        messages.success(request,"You Successfully signed in !!")
-        return redirect('/')
+        name= request.POST.get('name')
+        email=request.POST.get('email')
+        opass=request.POST.get('opass')
+        cpass=request.POST.get('cpass')
+
+        if opass == cpass:
+            si=sign(name=name,password=opass,email=email)
+            si.save()
+            messages.success(request,"You Successfully signed in !!")
+            return redirect('/')
+        else:
+            messages.error(request,'Password Not matching')
+            return redirect('/sign')
     else:
         return render(request,'sign_up.html')
 
